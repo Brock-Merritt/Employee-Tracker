@@ -12,7 +12,7 @@ class DB {
         return this.connection.promise().query(' INSERT INTO employee SET ?', employee);
     }
     removeEmployee(employeeid){
-        return this.connection.promise().query('DELETE FROM employee WHERE id =?', employeeid);
+        return this.connection.promise().query('DELETE FROM employee WHERE id = ?', employeeid);
     }
  
 }
