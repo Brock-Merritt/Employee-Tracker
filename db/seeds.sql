@@ -1,11 +1,11 @@
-USE employees;
 
-INSERT INTO department(name)
+INSERT INTO department(department_name)
 VALUES
  ('Sales'),
  ('Engineering'),
  ('Finance'),
  ('Legal');
+
 
 INSERT INTO role (title, salary, department_id)
 VALUES
@@ -16,10 +16,10 @@ VALUES
 ('Accountant', 125000 , 3),
 ('Legal Team Lead', 250000 , 4),
 ('Lawyer', 190000 , 4),
-('Software Engineer', 120000 , 2),
+('Software Engineer', 120000 , 2);
 
 
-
+-- values for the tables
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
@@ -30,5 +30,4 @@ VALUES
   ('Katherine', 'Mansfield', 5, NULL ),
   ('Dora', 'Carrington', 6,5 ),
   ('Edward', 'Bellamy', 7,NULL ),
-  ('Montague', 'Summers', 8,7 ),
---manager id might be null
+  ('Montague', 'Summers', 8,7 );

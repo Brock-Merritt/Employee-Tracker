@@ -1,5 +1,7 @@
-CREATE DATABASE department(
-    id INTEGER AUTO_INCREMENT,
-    name VARCHAR(30) 
-);
-USE department;
+DROP DATABASE IF EXISTS employeetracker;
+
+
+CREATE DATABASE employeetracker;
+
+
+-- only create databases    

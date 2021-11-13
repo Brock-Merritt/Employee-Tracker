@@ -4,7 +4,7 @@ const { inherits } = require('util');
 // const db = require('./db');
 require('console.table');
 const logo = require('asciiart-logo');
-
+const { Sequelize } = require('sequelize');
 
 
 

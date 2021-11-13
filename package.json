@@ -12,7 +12,8 @@
     "express": "^4.17.1",
     "inquirer": "^8.2.0",
     "mysql": "^2.18.1",
-    "mysql2": "^2.3.3-rc.0"
+    "mysql2": "^2.3.3-rc.0",
+    "sequelize": "^6.9.0"
   },
   "devDependencies": {},
   "scripts": {
