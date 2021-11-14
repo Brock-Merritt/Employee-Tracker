@@ -5,10 +5,12 @@ const { inherits } = require('util');
 require('console.table');
 const logo = require('asciiart-logo');
 const { Sequelize } = require('sequelize');
-const role = require('./models/role');
-// const employee = require('./models/employee');
+// const role = require('./models/role');
+const employee = require('./models/employee');
 // const department = require('./models/department');
 
+
+console.log(employee)
 
 
 const logotext = logo({
@@ -101,7 +103,7 @@ inquirer.prompt([
 
 
 function viewEmployees(){
-    db.findAllEmployees()
+    employee.findAll()
     .then(([rows]) => {
         let employees = rows;
         console.log("/n");

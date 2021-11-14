@@ -3,11 +3,11 @@ const sequelize = require('../db/connection');
 
 class employee extends Model {}
 
-
+// first_name, last_name, role_id, manager_id
 
 employee.init(
     {
-      title: {
+      first_name: {
         type: DataTypes.STRING,
         
         // Your code here to prevent NULL values
@@ -17,7 +17,7 @@ employee.init(
           len : [1, 160]
         }
       },
-      body: {
+      last_name: {
         type: DataTypes.TEXT,
         allowNull: false,
         // Your code here to prevent NULL values
@@ -25,7 +25,12 @@ employee.init(
           len: [1]
         }
       },
-      category: {
+      role_id: {
+        type: DataTypes.STRING,
+        defaultValue: 'personal'
+        // Your code here to have default value of 'Personal'
+      },
+      manager_id: {
         type: DataTypes.STRING,
         defaultValue: 'personal'
         // Your code here to have default value of 'Personal'
