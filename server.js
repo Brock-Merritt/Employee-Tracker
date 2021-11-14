@@ -1,12 +1,13 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const { inherits } = require('util');
-// const db = require('./db');
+// const db = require('./db/connection');
 require('console.table');
 const logo = require('asciiart-logo');
 const { Sequelize } = require('sequelize');
-
-
+const role = require('./models/role');
+// const employee = require('./models/employee');
+// const department = require('./models/department');
 
 
 
@@ -100,9 +101,15 @@ inquirer.prompt([
 
 
 function viewEmployees(){
-    // .findAll()
-    //select * from employees
+    db.findAllEmployees()
+    .then(([rows]) => {
+        let employees = rows;
+        console.log("/n");
+        console.table(employees)
+        .then(() => loadMainPrompts);
+    })
 }
+
 function viewRoles(){
     //select * from Roles
 }
