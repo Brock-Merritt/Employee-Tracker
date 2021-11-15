@@ -74,6 +74,10 @@ function startPrompt(){
                 viewRoles()
                 break;
             case "ADD_EMPLOYEE":
+                inquirer.prompt([{
+                    type:"input",
+                    name:"whats the name of the person you would like to add",
+                }])
                 addEmployee();
                 break;
             case "ADD_Department":
@@ -129,11 +133,21 @@ function addEmployee(){
 }
 
 function addRole(){
-    
+    db.addRoles()
+    .then(rows => {
+        console.table(rows);
+    }).then(() => {
+        return startPrompt();
+    })
 }
 
 function addDepartment(){
-    
+    db.addDepartments()
+    .then(rows => {
+        console.table(rows);
+    }).then(() => {
+        return startPrompt();
+    })
 }
 
 function quitFunction(){

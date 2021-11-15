@@ -26,11 +26,23 @@ function findDepartment(){
 }
 
 function addEmployees(){
-    return connection.promise().query('INSERT INTO `employee`')
+    return connection.promise().query('INSERT INTO `employee` VALUES ()')
+    .then( ([rows,fields]) => {
+        return rows;
+    });
+}
+function addRoles(){
+    return connection.promise().query('INSERT INTO `role` VALUES ()')
+    .then( ([rows,fields]) => {
+        return rows;
+    });
+}
+function addDepartments(){
+    return connection.promise().query('INSERT INTO `department` VALUES ()')
     .then( ([rows,fields]) => {
         return rows;
     });
 }
 
 
-module.exports = {findAll, findRoles, findDepartment, addEmployees};
+module.exports = {findAll, findRoles, findDepartment, addEmployees, addDepartments, addRoles};
