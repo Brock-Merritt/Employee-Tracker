@@ -1,135 +1,141 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
-const { inherits } = require('util');
-// const db = require('./db/connection');
+const db = require('./db');
 require('console.table');
 const logo = require('asciiart-logo');
-const { Sequelize } = require('sequelize');
-// const role = require('./models/role');
-const employee = require('./models/employee');
-// const department = require('./models/department');
 
 
-console.log(employee)
-
-
-const logotext = logo({
-    name: "Employee Manager"
-}).render();
-console.log(logotext);
-// startPrompt();
+Init();
 
 
 
-
-inquirer.prompt([
-    {
-        type:"list",
-        name:"choice",
-        message:"Choose an option",
-        choices:[
-            
-            {
-                name: "View all employees",
-                value: "VIEW_EMPLOYEES"
-            },
-            {
-                name: "View all departments",
-                value: "VIEW_DEPARTMENTS"
-            },
-            {
-                name: "View all roles",
-                value: "VIEW_ROLES"
-            },
-            {
-                name: "Add employee",
-                value: "ADD_EMPLOYEE"
-            },
-            {
-                name: "Add Department",
-                value: "ADD_Department"
-            },
-            {
-                name: "Add Role",
-                value: "ADD_ROLE"
-            },
-            {
-                name: "Update Employee Role",
-                value: "UPDATE_EMPLOYEE"
-            },                
-            {
-                name: "Quit",
-                value: "QUIT"
-            }
+function Init(){
+    const logotext = logo({
+        name: "Employee Manager"
+    }).render();
+    console.log(logotext);
+    startPrompt();
+};
 
 
-
-        ]
-    }
-]).then(res => {
-    console.log(res)
-    let choice = res.choice;
-    switch(choice){
-        case "VIEW_EMPLOYEES":
-            viewEmployees();
-            break;
-        case "VIEW_DEPARTMENTS":
-            viewDepartments();
-            break;
-        case "VIEW_ROLES":
-            viewRoles()
-            break;
-        case "ADD_EMPLOYEE":
-            addEmployee();
-            break;
-        case "ADD_Department":
-            addDepartment();
-            break;
-        case "ADD_ROLE":
-            addRole();
-            break;
-        case "UPDATE_EMPLOYEE":
-            updateRole();
-            break;
-        default:
-            
-            break;
-            
-
-    };
-});
-
-
-
+function startPrompt(){
+    inquirer.prompt([
+        {
+            type:"list",
+            name:"choice",
+            message:"Choose an option",
+            choices:[
+                
+                {
+                    name: "View all employees",
+                    value: "VIEW_EMPLOYEES"
+                },
+                {
+                    name: "View all departments",
+                    value: "VIEW_DEPARTMENTS"
+                },
+                {
+                    name: "View all roles",
+                    value: "VIEW_ROLES"
+                },
+                {
+                    name: "Add employee",
+                    value: "ADD_EMPLOYEE"
+                },
+                {
+                    name: "Add Department",
+                    value: "ADD_Department"
+                },
+                {
+                    name: "Add Role",
+                    value: "ADD_ROLE"
+                },
+                {
+                    name: "Update Employee Role",
+                    value: "UPDATE_EMPLOYEE"
+                },                
+                {
+                    name: "Quit",
+                    value: "QUIT"
+                }
+            ]
+        }
+    ]).then(res => {
+        console.log(res)
+        let choice = res.choice;
+        switch(choice){
+            case "VIEW_EMPLOYEES":
+                viewEmployees();
+                break;
+            case "VIEW_DEPARTMENTS":
+                viewDepartments();
+                break;
+            case "VIEW_ROLES":
+                viewRoles()
+                break;
+            case "ADD_EMPLOYEE":
+                addEmployee();
+                break;
+            case "ADD_Department":
+                addDepartment();
+                break;
+            case "ADD_ROLE":
+                addRole();
+                break;
+            case "UPDATE_EMPLOYEE":
+                updateRole();
+                break;
+            default:
+                quitFunction();
+                break;
+        };
+    });
+}
 
 function viewEmployees(){
-    employee.findAll()
-    .then(([rows]) => {
-        let employees = rows;
-        console.log("/n");
-        console.table(employees)
-        .then(() => loadMainPrompts);
-    })
+    db.findAll()
+    .then(rows => {
+        console.table(rows);
+    }).then(() => {
+        return startPrompt();
+    }) 
 }
 
 function viewRoles(){
-    //select * from Roles
+    db.findRoles()
+    .then(rows => {
+        console.table(rows);
+    }).then(() => {
+        return startPrompt();
+    })
 }
+
 function viewDepartments(){
-    //select * from departments
+    db.findDepartment()
+    .then(rows => {
+        console.table(rows);
+    }).then(() => {
+        return startPrompt();
+    })
 }
 
+function addEmployee(){
+    db.addEmployees()
+    .then(rows => {
+        console.table(rows);
+    }).then(() => {
+        return startPrompt();
+    })
+}
 
+function addRole(){
+    
+}
 
+function addDepartment(){
+    
+}
 
-
-
-
-
-
-
-
-
-
-
-
+function quitFunction(){
+    process.exit();
+}
