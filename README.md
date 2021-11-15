@@ -7,7 +7,7 @@
 
 ![image](https://user-images.githubusercontent.com/88811836/141708152-b3fe6476-d44f-4d38-9081-2ec17315fdd2.png)
 
-
+* video walkthrough(https://watch.screencastify.com/v/2PuiwljF5D5ELAPHH7N9)
 
 ## Table of Contents
 * [Description](#Description)
